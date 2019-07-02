@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WriteDay"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/leftRight_margin"
+    android:layout_marginRight="@dimen/leftRight_margin"
+    >
+    <TextView
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:textColor="@color/main"
+        android:gravity="center_horizontal"
+        tools:text="일정 추가"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/commonContentTxt"
+            android:textColor="#ff0060"
+            android:gravity="center_horizontal"
+           android:text="일정 이름"
+            />
+        <EditText
+            android:layout_marginLeft="10dp"
+            android:id="@+id/dayTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/writeDayBtn"
+        android:textColor="@color/main"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/button"
+        android:text="추가하기"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
