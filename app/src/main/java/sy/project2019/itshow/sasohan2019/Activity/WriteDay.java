@@ -1,4 +1,4 @@
-package sy.project2019.itshow.sasohan2019;
+package sy.project2019.itshow.sasohan2019.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
+import sy.project2019.itshow.sasohan2019.R;
 
 public class WriteDay extends AppCompatActivity {
 

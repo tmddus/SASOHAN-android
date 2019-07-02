@@ -1,4 +1,4 @@
-package sy.project2019.itshow.sasohan2019;
+package sy.project2019.itshow.sasohan2019.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,6 +20,8 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import sy.project2019.itshow.sasohan2019.R;
 
 public class GallayFragment extends Fragment {
     final int REQ_CODE_SELECT_IMAGE=100;

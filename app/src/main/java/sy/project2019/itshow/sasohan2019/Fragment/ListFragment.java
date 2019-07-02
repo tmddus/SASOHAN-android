@@ -1,4 +1,4 @@
-package sy.project2019.itshow.sasohan2019;
+package sy.project2019.itshow.sasohan2019.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import sy.project2019.itshow.sasohan2019.R;
+import sy.project2019.itshow.sasohan2019.Activity.WriteActivity;
 
 public class ListFragment extends Fragment  {
 
@@ -73,7 +76,7 @@ public class ListFragment extends Fragment  {
         btn_gowrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(), WriteActibity.class);
+                intent = new Intent(getActivity(), WriteActivity.class);
                 startActivity(intent);
 
                 refresh();

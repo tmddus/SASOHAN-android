@@ -1,10 +1,9 @@
-package sy.project2019.itshow.sasohan2019;
+package sy.project2019.itshow.sasohan2019.Activity;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -12,15 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
+import sy.project2019.itshow.sasohan2019.Fragment.FragDefault;
+import sy.project2019.itshow.sasohan2019.Fragment.Fragment3;
+import sy.project2019.itshow.sasohan2019.Fragment.GallayFragment;
+import sy.project2019.itshow.sasohan2019.Fragment.ListFragment;
+import sy.project2019.itshow.sasohan2019.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 

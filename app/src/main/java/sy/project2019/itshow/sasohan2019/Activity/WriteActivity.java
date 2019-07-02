@@ -1,4 +1,4 @@
-package sy.project2019.itshow.sasohan2019;
+package sy.project2019.itshow.sasohan2019.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
+import sy.project2019.itshow.sasohan2019.R;
 
-public class WriteActibity extends AppCompatActivity {
+public class WriteActivity extends AppCompatActivity {
     Button addbtn;
     String title, contents;
     EditText ed_title, ed_contents;

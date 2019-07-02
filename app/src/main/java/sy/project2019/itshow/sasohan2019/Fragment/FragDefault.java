@@ -1,4 +1,4 @@
-package sy.project2019.itshow.sasohan2019;
+package sy.project2019.itshow.sasohan2019.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import sy.project2019.itshow.sasohan2019.R;
 
 import static android.app.Activity.RESULT_OK;
 

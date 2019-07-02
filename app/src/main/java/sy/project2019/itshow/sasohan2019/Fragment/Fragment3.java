@@ -1,4 +1,4 @@
-package sy.project2019.itshow.sasohan2019;
+package sy.project2019.itshow.sasohan2019.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,9 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.Calendar;
+
+import sy.project2019.itshow.sasohan2019.R;
+import sy.project2019.itshow.sasohan2019.Activity.WriteDay;
 
 public class Fragment3 extends Fragment {
     View view;
