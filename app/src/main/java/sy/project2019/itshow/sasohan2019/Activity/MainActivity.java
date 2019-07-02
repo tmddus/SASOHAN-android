@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case FRAGMENT3:
-                // '프래그먼트2' 호출
+                // '프래그먼트3' 호출
                 Fragment3 fragment3 = new Fragment3();
                 transaction.replace(R.id.fragment_container, fragment3);
                 transaction.commit();
