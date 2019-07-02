@@ -10,14 +10,6 @@
     android:paddingTop="@dimen/top_margin"
     android:orientation="vertical">
 
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -51,7 +43,7 @@
                             android:background="@drawable/date_bg"
                             android:layout_width="match_parent"
                             android:layout_height="90dp">
-                                <ImageView
+                                <ImageButton
                                     android:id="@+id/writeDayBtn"
                                     android:layout_alignParentRight="true"
                                     android:layout_margin="10dp"
@@ -69,10 +61,3 @@
                                     android:layout_height="wrap_content" />
                         </RelativeLayout>
                 </LinearLayout>
-        </ScrollView>
-
-
-
-
-
-</LinearLayout>

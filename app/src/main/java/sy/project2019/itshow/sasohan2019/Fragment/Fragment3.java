@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -22,9 +24,9 @@ import sy.project2019.itshow.sasohan2019.Activity.WriteDay;
 public class Fragment3 extends Fragment {
     View view;
     TextView dayText;
-    ImageView writeBtn;
+    ImageButton writeBtn;
     MaterialCalendarView calendarView;
-    Calendar currentDay;
+    Calendar currentDay=null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +47,11 @@ public class Fragment3 extends Fragment {
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), WriteDay.class);
+                if(currentDay == null){
+                    Toast.makeText(getActivity(), "날짜를 선택해주세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent intent = new Intent(getActivity(), WriteDay.class);
                 intent.putExtra("day", currentDay);
                 startActivity(intent);
 
