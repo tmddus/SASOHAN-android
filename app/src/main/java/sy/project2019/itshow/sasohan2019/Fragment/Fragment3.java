@@ -42,13 +42,10 @@ public class Fragment3 extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment3, container, false);
 
-        dayText = view.findViewById(R.id.today_rememberDay_frag3);
-        writeBtn = view.findViewById(R.id.writeDayBtn_frag3);
-        calendarView = view.findViewById(R.id.calendar);
-
-        db = new DBHelper(getActivity(), DBHelper.tableName, null, 1);
+        init();
 
         giukModelsArr = db.getAllGiukDate();
+        dayArr = new ArrayList<>();
 
         if(giukModelsArr.size() != 0){
             for(int i=0; i<giukModelsArr.size(); i++){
@@ -74,24 +71,23 @@ public class Fragment3 extends Fragment {
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "토스트", Toast.LENGTH_SHORT).show();
-
-                if(currentDay == null){
-                    Toast.makeText(getActivity(), "날짜를 선택해주세요", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Intent intent = new Intent(getActivity(), WriteDay.class);
-                intent.putExtra("day", currentDay);
-                startActivity(intent);
-
+                Toast.makeText(getActivity(), "이씨발 온클릭 왜 안되냐구~", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fragment3, container, false);
 
+
+    }
+
+    public void init(){
+        dayText = view.findViewById(R.id.today_rememberDay_frag3);
+        writeBtn = view.findViewById(R.id.writeDayBtn_frag3);
+        calendarView = view.findViewById(R.id.calendar);
+
+        db = new DBHelper(getActivity(), DBHelper.tableName, null, 1);
 
     }
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ShowDiary">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:padding="15dp">
+
+      <TextView
+          android:id="@+id/sd_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="title"
+          android:textColor="@color/colorPrimary"
+          android:textSize="28sp"/>
+      <TextView
+          android:id="@+id/sd_date"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="date"
+          android:textColor="@color/colorPrimary"
+          android:textSize="20sp"/>
+      <TextView
+          android:id="@+id/sd_send"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="send"
+          android:textColor="#000000"
+          android:textSize="20sp"/>
+      <TextView
+          android:id="@+id/sd_cont"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="title"
+          android:textColor="#000000"
+          android:textSize="20sp"
+          android:layout_marginTop="50dp"/>
+
+
+  </LinearLayout>
+
+</LinearLayout>

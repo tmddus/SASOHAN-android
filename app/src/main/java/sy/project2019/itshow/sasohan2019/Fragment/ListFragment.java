@@ -16,11 +16,11 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
 import sy.project2019.itshow.sasohan2019.Model.DiaryModel;
+import sy.project2019.itshow.sasohan2019.Activity.ShowDiary;
 import sy.project2019.itshow.sasohan2019.R;
 import sy.project2019.itshow.sasohan2019.Activity.WriteActivity;
 
@@ -89,6 +89,11 @@ public class ListFragment extends Fragment  {
 
                 String titleStr = item.getTitle() ;
                 String descStr = item.getDesc() ;
+
+                intent = new Intent(getActivity(), ShowDiary.class);
+                intent.putExtra("title",titleStr);
+                startActivity(intent);
+                refresh();
 
             }
         }) ;
