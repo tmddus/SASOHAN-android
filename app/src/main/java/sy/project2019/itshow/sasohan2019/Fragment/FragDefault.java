@@ -60,20 +60,12 @@ public class FragDefault extends Fragment  {
         familyArr = db.getAllFamily();
 
 
-        // 임시데이터
-
         if(familyArr.size() != 0){
             for(int i=0; i< familyArr.size(); i++) {
                 adapter.addItem(familyArr.get(i).getName(), familyArr.get(i).getPhoneNum());
                 adapter.notifyDataSetChanged();
             }
         }
-
-//        adapter.addItem("엄마", "010-1234-5678") ;
-//        adapter.addItem("아빠", "010-9876-5432") ;
-//        adapter.addItem("언니", "010-2345-6789") ;
-//        adapter.addItem("오빠", "010-8765-4321") ;
-//        adapter.notifyDataSetChanged();
 
 
         //글쓰기 버튼

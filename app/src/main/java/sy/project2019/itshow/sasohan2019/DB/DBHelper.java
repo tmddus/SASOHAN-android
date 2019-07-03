@@ -197,7 +197,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Log.e("이미지 저장", "완료");
 
-
     }
 
     public ArrayList<byte[]> getImage(){ // 이미지 모두 가져오기

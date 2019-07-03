@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,7 +85,7 @@ public class Fragment3 extends Fragment {
 
     public void init(){
         dayText = view.findViewById(R.id.today_rememberDay_frag3);
-        writeBtn = view.findViewById(R.id.writeDayBtn_frag3);
+        writeBtn = view.findViewById(R.id.writeDayBtn_frag33);
         calendarView = view.findViewById(R.id.calendar);
 
         db = new DBHelper(getActivity(), DBHelper.tableName, null, 1);
