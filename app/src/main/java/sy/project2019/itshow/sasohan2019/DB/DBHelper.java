@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -80,8 +82,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         db.execSQL("INSERT INTO diary (token, title, content, writedate, " +
-                        "receiver, issended, isprivate, receivedate) values(" + token +
-                    ", " + title + ", " + content + ","+today.getTime() + receiver + "," + isSend + "," +  isPrivate + ");"
+                        "receiver, issended, isprivate) values( '" + token +
+                    "' , '" + title + "', '" + content + "',"+today.getTime() + ",'" + receiver + "'," + isSend + "," +  isPrivate + ");"
                 );
     }
 
@@ -90,13 +92,13 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<DiaryModel> arr = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery("  SELECT * FROM diary", null);
-        boolean isSend = cursor.getInt(5) > 0;
-        boolean isPrivate = cursor.getInt(6) > 0;
 
         while (cursor.moveToNext()){
+            boolean isSend = cursor.getInt(5) == 1;
+            boolean isPrivate = cursor.getInt(6) == 1;
             arr.add(new DiaryModel(cursor.getString(0), cursor.getString(1), cursor.getString(2),
-                    cursor.getLong(3), cursor.getString(4), isSend, isPrivate, cursor.getLong(7)
-                    ));
+                    cursor.getLong(3), cursor.getString(4), isSend, isPrivate)
+                    );
         }
         return arr;
 
@@ -113,9 +115,8 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String token = rndString(10);
 
-        db.execSQL("INSERT INTO diary (token, name) values(" +
-                date + "," + name +
-                ");"
+        db.execSQL("INSERT INTO giukDate (token, date,  name) values('" +
+                token +"'," +date + ",'" + name + "');"
         );
     }
 
@@ -189,9 +190,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void imageInsert(byte[] img){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO gallary (date, image) values(" +
-                rndString(10) + "," + img + ");"
-        );
+        SQLiteStatement p = db.compileStatement("INSERT INTO gallary (token, image) values(?,?);");
+        p.bindString(1, rndString(10));
+        p.bindBlob(2, img);
+
+        p.execute();
+
+        Log.e("이미지 저장", "완료");
+
     }
 
     public ArrayList<byte[]> getImage(){ // 이미지 모두 가져오기
@@ -200,8 +206,12 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT image FROM gallary", null);
 
         while (cursor.moveToNext()){
+            Log.e(cursor.getBlob(0).toString(), "이미지???");
             arr.add(cursor.getBlob(0));
         }
+
+        Log.e("db에서 가져오기", "완료");
+
 
         return arr;
 

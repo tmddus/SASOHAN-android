@@ -8,10 +8,9 @@ public class DiaryModel {
     String receiver;
     boolean isSended;
     boolean isPrivate;
-    long receivedate;
 
     public DiaryModel(String token, String title, String content,
-                      long writeDate, String receiver, boolean isSended, boolean isPrivate, long receivedate) {
+                      long writeDate, String receiver, boolean isSended, boolean isPrivate) {
         this.token = token;
         this.title = title;
         this.content = content;
@@ -19,7 +18,6 @@ public class DiaryModel {
         this.receiver = receiver;
         this.isSended = isSended;
         this.isPrivate = isPrivate;
-        this.receivedate = receivedate;
     }
 
     public String getToken() {
@@ -78,11 +76,4 @@ public class DiaryModel {
         isPrivate = aPrivate;
     }
 
-    public long getReceivedate() {
-        return receivedate;
-    }
-
-    public void setReceivedate(long receivedate) {
-        this.receivedate = receivedate;
-    }
 }

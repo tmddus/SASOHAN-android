@@ -44,6 +44,7 @@
             android:background="@drawable/shadow"
             android:outlineAmbientShadowColor="@color/colorPrimary"/>
         <ListView
+            android:layout_marginBottom="80dp"
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

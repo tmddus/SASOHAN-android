@@ -14,9 +14,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+
 import sy.project2019.itshow.sasohan2019.Activity.SendSMS;
+import sy.project2019.itshow.sasohan2019.DB.DBHelper;
+import sy.project2019.itshow.sasohan2019.Model.DiaryModel;
 import sy.project2019.itshow.sasohan2019.Activity.ShowDiary;
 import sy.project2019.itshow.sasohan2019.R;
 import sy.project2019.itshow.sasohan2019.Activity.WriteActivity;
@@ -30,7 +34,8 @@ public class ListFragment extends Fragment  {
     String title,contents;
     ListView listview ;
     ListViewAdapter adapter;
-    public ListFragment() {}
+    ArrayList<DiaryModel> diaryArr;
+    SimpleDateFormat format1;
 
 
     @Override
@@ -50,28 +55,34 @@ public class ListFragment extends Fragment  {
         listview = (ListView) view.findViewById(R.id.listview);
         listview.setAdapter(adapter);
 
-        //db에서 (제목,날짜) 가져오기
-        // 임시데이터
-        adapter.addItem("사랑하는 우리엄마", "2019/06/10") ;
-        adapter.addItem("오늘 가족에게 속상했던 일들", "2019/06/02") ;
-        adapter.addItem("언니 앞으로는 싸우지 말자", "2019/05/11") ;
-        adapter.addItem("할머니 아프지 마세요", "2019/05/09") ;
-        adapter.addItem("힘들었을 나에게, 수고했어", "2019/05/01") ;
-        adapter.notifyDataSetChanged();
+        DBHelper dbHelper = new DBHelper(getActivity(), DBHelper.tableName, null, 1);
+        diaryArr = dbHelper.getAllDiary();
+
+        format1 = new SimpleDateFormat( "yyyy/MM/dd");
+
+
+
+        if(diaryArr.size() != 0){
+            for(int i=0; i< diaryArr.size(); i++){
+                String day = format1.format(diaryArr.get(i).getWriteDate());
+                adapter.addItem(diaryArr.get(i).getTitle(), day);
+            }
+        }
+
 
 
         // 위에서 생성한 listview에 클릭 이벤트 핸들러 정의.
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-                // get item
-                ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
-
-                String titleStr = item.getTitle() ;
-                String descStr = item.getDesc() ;
-
+                DiaryModel model =  diaryArr.get(position);
                 intent = new Intent(getActivity(), ShowDiary.class);
-                intent.putExtra("title",titleStr); //임시로 타이틀값넘겨줌... 나중엔 db로 하면될듯
+                String day = format1.format(model.getWriteDate());
+                intent.putExtra("title",model.getTitle());
+                intent.putExtra("date", day);
+                intent.putExtra("content", model.getContent());
+                intent.putExtra("rec", model.getReceiver());
+
                 startActivity(intent);
                 refresh();
 
@@ -91,12 +102,6 @@ public class ListFragment extends Fragment  {
             }
         });
 
-//        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, list);
-//        for (int i = 0; i < 20; i++) {
-//            list.add("item " + i); //임시데이터
-//        }
-//        ListView listview = (ListView) view.findViewById(R.id.listview) ;
-//        listview.setAdapter(adapter);
 
         return view;
     }

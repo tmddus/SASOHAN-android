@@ -17,6 +17,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import sy.project2019.itshow.sasohan2019.DB.DBHelper;
+import sy.project2019.itshow.sasohan2019.Model.DiaryModel;
+import sy.project2019.itshow.sasohan2019.Model.FamilyModel;
 import sy.project2019.itshow.sasohan2019.R;
 
 import static android.app.Activity.RESULT_OK;
@@ -30,6 +33,9 @@ public class FragDefault extends Fragment  {
     String name,number;
     ListView listview ;
     ListViewAdapter adapter;
+    DBHelper db;
+    ArrayList<FamilyModel> familyArr;
+
     public FragDefault() {}
 
 
@@ -39,9 +45,6 @@ public class FragDefault extends Fragment  {
 
 
         view = inflater.inflate(R.layout.frag_default, container, false);
-
-
-        출처: https://blog.opid.kr/250 [opid's document]
 
         //글 목록
 
@@ -53,12 +56,16 @@ public class FragDefault extends Fragment  {
         listview.setAdapter(adapter);
 
         //db에서 (제목,날짜) 가져오기
-        // 임시데이터
-        adapter.addItem("엄마", "010-1234-5678") ;
-        adapter.addItem("아빠", "010-9876-5432") ;
-        adapter.addItem("언니", "010-2345-6789") ;
-        adapter.addItem("오빠", "010-8765-4321") ;
-        adapter.notifyDataSetChanged();
+        db = new DBHelper(getActivity(), DBHelper.tableName, null, 1);
+        familyArr = db.getAllFamily();
+
+
+        if(familyArr.size() != 0){
+            for(int i=0; i< familyArr.size(); i++) {
+                adapter.addItem(familyArr.get(i).getName(), familyArr.get(i).getPhoneNum());
+                adapter.notifyDataSetChanged();
+            }
+        }
 
 
         //글쓰기 버튼
@@ -87,6 +94,9 @@ public class FragDefault extends Fragment  {
             name = cursor.getString(0);        //0은 이름을 얻어옵니다.
             number = cursor.getString(1);    //1은 번호를 받아옵니다.
             adapter.addItem(name,number);
+
+            db.familyInsert(name, number);
+
             cursor.close();
         }
         super.onActivityResult(requestCode, resultCode, data);

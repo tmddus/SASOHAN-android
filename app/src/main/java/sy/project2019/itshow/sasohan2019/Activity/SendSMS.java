@@ -26,6 +26,8 @@ public class SendSMS extends AppCompatActivity {
     Spinner spinner;
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
+    String rec = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,8 @@ public class SendSMS extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),arrayList.get(i)+"가 선택되었습니다.",
                         Toast.LENGTH_SHORT).show();
 
+                rec = arrayList.get(i);
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -73,25 +77,38 @@ public class SendSMS extends AppCompatActivity {
                 //입력한 값을 가져와 변수에 담는다
 //                String phoneNo = textPhoneNo.getText().toString();
 //                String sms = textSMS.getText().toString();
-                String phoneNo = "01030676865"; //번호
-                String sms = ed_contents.getText().toString(); //내용
 
-                try {
-                    //전송
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, sms, null, null);
-                    Toast.makeText(getApplicationContext(), "전송 완료!", Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
+                if(!isP.isChecked()){
+
+                    String phone = db.getPhoneNum(rec);
+                    if(!phone.equals("error")){
+
+                    }
+                    String phoneNo = "01030676865"; //번호
+                    String sms = ed_contents.getText().toString(); //내용
+
+                    try {
+                        //전송
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                        Toast.makeText(getApplicationContext(), "전송 완료!", Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+                }
+
+                int isprivate = 0;
+                if(isP.isChecked()){
+                    isprivate = 1;
                 }
 
                 //db에 글 추가
-//                db.DiaryInsert(ed_title.getText().toString(), ed_contents.getText().toString());
+                db.DiaryInsert(ed_title.getText().toString(), ed_contents.getText().toString(), rec, 0, isprivate);
 
                 //db삽입성공시
-//                Toast toast = Toast.makeText(getApplicationContext(),"일기가 등록되었습니다.",Toast.LENGTH_SHORT);
-//                toast.show();
+                Toast toast = Toast.makeText(getApplicationContext(),"일기가 등록되었습니다.",Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
             }
         });
