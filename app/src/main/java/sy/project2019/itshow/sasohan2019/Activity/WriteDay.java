@@ -1,5 +1,6 @@
 package sy.project2019.itshow.sasohan2019.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ public class WriteDay extends AppCompatActivity {
     EditText title;
     Button writeBtn;
     DBHelper db;
+    Calendar currentDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,13 @@ public class WriteDay extends AppCompatActivity {
 
         writeBtn = findViewById(R.id.writeDayBtn);
         title = findViewById(R.id.dayTitle);
-
-
-        final Calendar day = (Calendar) getIntent().getSerializableExtra("day");
+        Intent intent = getIntent();
+        currentDay = (Calendar) intent.getSerializableExtra("currentDay");
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.DateInsert(day.getTimeInMillis(), title.getText().toString());
+                db.DateInsert(currentDay.getTimeInMillis(), title.getText().toString());
                 Toast.makeText(getApplicationContext(), "일정이 등록되었습니다", Toast.LENGTH_SHORT).show();
                 finish();
             }

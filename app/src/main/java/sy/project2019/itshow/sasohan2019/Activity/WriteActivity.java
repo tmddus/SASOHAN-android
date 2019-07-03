@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
 import sy.project2019.itshow.sasohan2019.Model.FamilyModel;
@@ -53,11 +54,6 @@ public class WriteActivity extends AppCompatActivity {
             }
         }
 
-//        arrayList.add("엄마");
-//        arrayList.add("아빠");
-//        arrayList.add("언니");
-//        arrayList.add("오빠");
-//        arrayList.add("할머니");
 
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,

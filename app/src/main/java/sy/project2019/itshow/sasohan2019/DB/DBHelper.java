@@ -115,9 +115,8 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String token = rndString(10);
 
-        db.execSQL("INSERT INTO diary (token, name) values(" +
-                date + "," + name +
-                ");"
+        db.execSQL("INSERT INTO giukDate (token, date,  name) values('" +
+                token +"'," +date + ",'" + name + "');"
         );
     }
 
@@ -195,6 +194,8 @@ public class DBHelper extends SQLiteOpenHelper {
         p.bindString(1, rndString(10));
         p.bindBlob(2, img);
 
+        p.execute();
+
         Log.e("이미지 저장", "완료");
 
     }
@@ -205,8 +206,12 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT image FROM gallary", null);
 
         while (cursor.moveToNext()){
+            Log.e(cursor.getBlob(0).toString(), "이미지???");
             arr.add(cursor.getBlob(0));
         }
+
+        Log.e("db에서 가져오기", "완료");
+
 
         return arr;
 
