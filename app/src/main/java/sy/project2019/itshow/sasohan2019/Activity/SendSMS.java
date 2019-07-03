@@ -73,7 +73,7 @@ public class SendSMS extends AppCompatActivity {
                 //입력한 값을 가져와 변수에 담는다
 //                String phoneNo = textPhoneNo.getText().toString();
 //                String sms = textSMS.getText().toString();
-                String phoneNo = "5556"; //번호
+                String phoneNo = "01030676865"; //번호
                 String sms = ed_contents.getText().toString(); //내용
 
                 try {
