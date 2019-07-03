@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ShowDiary"></activity>
+
+        <activity android:name=".Activity.SendSMS"/>
+        <activity android:name=".Activity.ShowDiary" />
         <activity android:name=".Activity.WriteActivity" />
         <activity android:name=".Activity.WriteDay" />
         <activity android:name=".Activity.MainActivity">

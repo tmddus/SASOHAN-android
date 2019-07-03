@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
+import sy.project2019.itshow.sasohan2019.Activity.SendSMS;
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
 import sy.project2019.itshow.sasohan2019.Model.DiaryModel;
 import sy.project2019.itshow.sasohan2019.Activity.ShowDiary;
@@ -81,6 +82,7 @@ public class ListFragment extends Fragment  {
                 intent.putExtra("date", day);
                 intent.putExtra("content", model.getContent());
                 intent.putExtra("rec", model.getReceiver());
+
                 startActivity(intent);
                 refresh();
 
@@ -92,7 +94,8 @@ public class ListFragment extends Fragment  {
         btn_gowrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(), WriteActivity.class);
+//                intent = new Intent(getActivity(), WriteActivity.class);
+                intent = new Intent(getActivity(), SendSMS.class); //문자보내기 테스트
                 startActivity(intent);
 
                 refresh();

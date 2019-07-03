@@ -17,7 +17,6 @@ public class ShowDiary extends AppCompatActivity {
         setContentView(R.layout.activity_show_diary);
         init();
 
-
         tv_title.setText(title);
         tv_date.setText(date);
         tv_content.setText(content);

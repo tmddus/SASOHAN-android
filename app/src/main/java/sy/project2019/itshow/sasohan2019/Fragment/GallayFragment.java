@@ -64,22 +64,14 @@ public class GallayFragment extends Fragment {
 
         imagesArr = db.getImage();
         Log.e("gjirjiowf", imagesArr.size() + "");
-        
+
         if(imagesArr.size() != 0){
             for(int i=0; i<imagesArr.size(); i++){
-
                 imgarray.add(byteArrayToBitmap(imagesArr.get(i)));
             }
         }
 
-//        imgarray.add(R.drawable.c);
-//        imgarray.add(R.drawable.e);
-//        imgarray.add(R.drawable.q);
-//        imgarray.add(R.drawable.e);
-//        imgarray.add(R.drawable.j);
-//        imgarray.add(R.drawable.q);
-//        imgarray.add(R.drawable.c);
-//        imgarray.add(R.drawable.e);
+
 
         // 커스텀 아답타 생성
         ImageAdapter adapter = new ImageAdapter(getContext());    // 데이터
@@ -127,6 +119,7 @@ public class GallayFragment extends Fragment {
 
         if (requestCode == PICK_FROM_ALBUM) {
             photoUri = data.getData();
+
             String filePath = getPath(photoUri); // 이걸로 file 처리
             String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1); // 사진 타입
             Bitmap image_bitmap;
