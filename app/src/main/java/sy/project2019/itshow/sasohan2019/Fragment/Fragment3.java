@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +16,14 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
+import sy.project2019.itshow.sasohan2019.DB.DBHelper;
+import sy.project2019.itshow.sasohan2019.DayDecorator;
+import sy.project2019.itshow.sasohan2019.Model.giukDateModel;
 import sy.project2019.itshow.sasohan2019.R;
 import sy.project2019.itshow.sasohan2019.Activity.WriteDay;
 
@@ -27,6 +33,9 @@ public class Fragment3 extends Fragment {
     ImageButton writeBtn;
     MaterialCalendarView calendarView;
     Calendar currentDay=null;
+    ArrayList<CalendarDay> dayArr;
+    DBHelper db;
+    ArrayList<giukDateModel> giukModelsArr;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,8 +43,26 @@ public class Fragment3 extends Fragment {
         view = inflater.inflate(R.layout.fragment_fragment3, container, false);
 
         dayText = view.findViewById(R.id.today_rememberDay_frag3);
-        writeBtn = view.findViewById(R.id.writeDayBtn);
+        writeBtn = view.findViewById(R.id.writeDayBtn_frag3);
         calendarView = view.findViewById(R.id.calendar);
+
+        db = new DBHelper(getActivity(), DBHelper.tableName, null, 1);
+
+        giukModelsArr = db.getAllGiukDate();
+
+        if(giukModelsArr.size() != 0){
+            for(int i=0; i<giukModelsArr.size(); i++){
+//                Calendar c = new GregorianCalendar(giukModelsArr.get(i).getDate());
+//                Date d = new Date(giukModelsArr.get(i).getDate());
+                Calendar c = Calendar.getInstance();
+                c.setTimeInMillis(giukModelsArr.get(i).getDate());
+                Log.e(c.get(Calendar.YEAR) + "" +  c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH) + "");
+                CalendarDay Cday = new CalendarDay(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+                dayArr.add(Cday);
+            }
+        }
+
+        calendarView.addDecorator(new DayDecorator(dayArr));
 
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -47,6 +74,8 @@ public class Fragment3 extends Fragment {
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getActivity().getApplicationContext(), "토스트", Toast.LENGTH_SHORT).show();
+
                 if(currentDay == null){
                     Toast.makeText(getActivity(), "날짜를 선택해주세요", Toast.LENGTH_SHORT).show();
                     return;
