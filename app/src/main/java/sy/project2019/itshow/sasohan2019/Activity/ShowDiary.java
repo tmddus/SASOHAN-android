@@ -20,9 +20,7 @@ public class ShowDiary extends AppCompatActivity {
 
         tv_title = findViewById(R.id.sd_title);
 
-        Intent intent = getIntent();
-
-
+        Intent intent = getIntent(); //임시로 intent로 받아오고 나중에 db로
         title = intent.getStringExtra("title");
         tv_title.setText(title);
 

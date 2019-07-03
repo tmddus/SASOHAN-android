@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import sy.project2019.itshow.sasohan2019.Activity.SendSMS;
 import sy.project2019.itshow.sasohan2019.Activity.ShowDiary;
 import sy.project2019.itshow.sasohan2019.R;
 import sy.project2019.itshow.sasohan2019.Activity.WriteActivity;
@@ -70,7 +71,7 @@ public class ListFragment extends Fragment  {
                 String descStr = item.getDesc() ;
 
                 intent = new Intent(getActivity(), ShowDiary.class);
-                intent.putExtra("title",titleStr);
+                intent.putExtra("title",titleStr); //임시로 타이틀값넘겨줌... 나중엔 db로 하면될듯
                 startActivity(intent);
                 refresh();
 
@@ -82,7 +83,8 @@ public class ListFragment extends Fragment  {
         btn_gowrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(), WriteActivity.class);
+//                intent = new Intent(getActivity(), WriteActivity.class);
+                intent = new Intent(getActivity(), SendSMS.class); //문자보내기 테스트
                 startActivity(intent);
 
                 refresh();
