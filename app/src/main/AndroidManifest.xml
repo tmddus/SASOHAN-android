@@ -14,8 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Activity.SendSMS"/>
+        <activity android:name=".Activity.addFamilyActivity"></activity>
+        <activity android:name=".Activity.SendSMS" />
         <activity android:name=".Activity.ShowDiary" />
         <activity android:name=".Activity.WriteActivity" />
         <activity android:name=".Activity.WriteDay" />

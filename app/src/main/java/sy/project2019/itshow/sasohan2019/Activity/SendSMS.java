@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
+import sy.project2019.itshow.sasohan2019.Model.FamilyModel;
 import sy.project2019.itshow.sasohan2019.R;
 
 public class SendSMS extends AppCompatActivity {
@@ -26,7 +27,8 @@ public class SendSMS extends AppCompatActivity {
     Spinner spinner;
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
-    String rec = null;
+    String rec = null, recNum = null;
+    ArrayList<FamilyModel> familyArr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +39,30 @@ public class SendSMS extends AppCompatActivity {
         ed_title = findViewById(R.id.edit_title);
         ed_contents = findViewById(R.id.edit_content);
         isP = findViewById(R.id.isPrivate);
-
-        //연락처 더미데이터
         arrayList = new ArrayList<>();
-        arrayList.add("엄마");
-        arrayList.add("아빠");
-        arrayList.add("언니");
-        arrayList.add("오빠");
-        arrayList.add("할머니");
 
+        db = new DBHelper(getApplication(), DBHelper.tableName, null, 1);
+        familyArr = db.getAllFamily();
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 arrayList);
+
+        if(familyArr.size() != 0){
+            for(int i=0; i< familyArr.size(); i++){
+                arrayList.add(familyArr.get(i).getName());
+                arrayAdapter.notifyDataSetChanged();
+            }
+        }
+
+        //연락처 더미데이터
+//        arrayList = new ArrayList<>();
+//        arrayList.add("엄마");
+//        arrayList.add("아빠");
+//        arrayList.add("언니");
+//        arrayList.add("오빠");
+//        arrayList.add("할머니");
+
+
 
         //스피너 설정
         spinner = (Spinner)findViewById(R.id.Receiver);
@@ -62,6 +76,8 @@ public class SendSMS extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
 
                 rec = arrayList.get(i);
+                recNum = familyArr.get(i).getPhoneNum();
+
 
             }
             @Override
@@ -80,11 +96,7 @@ public class SendSMS extends AppCompatActivity {
 
                 if(!isP.isChecked()){
 
-                    String phone = db.getPhoneNum(rec);
-                    if(!phone.equals("error")){
-
-                    }
-                    String phoneNo = "01030676865"; //번호
+                    String phoneNo = recNum; //번호
                     String sms = ed_contents.getText().toString(); //내용
 
                     try {

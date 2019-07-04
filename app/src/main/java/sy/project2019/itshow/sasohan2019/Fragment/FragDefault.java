@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import sy.project2019.itshow.sasohan2019.Activity.addFamilyActivity;
 import sy.project2019.itshow.sasohan2019.DB.DBHelper;
 import sy.project2019.itshow.sasohan2019.Model.DiaryModel;
 import sy.project2019.itshow.sasohan2019.Model.FamilyModel;
@@ -73,34 +74,38 @@ public class FragDefault extends Fragment  {
         btn_gophone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setData(ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
-                startActivityForResult(intent, 0);
-                adapter.addItem(name, number) ;
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setData(ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+//                startActivityForResult(intent, 0);
+//                adapter.addItem(name, number) ;
+
+                Intent intent = new Intent(getActivity(), addFamilyActivity.class);
+                startActivity(intent);
+
             }
         });
 
 
         return view;
     }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK)
-        {
-            Cursor cursor = getActivity().getContentResolver().query(intent.getData(),
-                    new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-                            ContactsContract.CommonDataKinds.Phone.NUMBER}, null, null, null);
-            cursor.moveToFirst();
-            name = cursor.getString(0);        //0은 이름을 얻어옵니다.
-            number = cursor.getString(1);    //1은 번호를 받아옵니다.
-            adapter.addItem(name,number);
-
-            db.familyInsert(name, number);
-
-            cursor.close();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if(resultCode == RESULT_OK)
+//        {
+//            Cursor cursor = getActivity().getContentResolver().query(intent.getData(),
+//                    new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+//                            ContactsContract.CommonDataKinds.Phone.NUMBER}, null, null, null);
+//            cursor.moveToFirst();
+//            name = cursor.getString(0);        //0은 이름을 얻어옵니다.
+//            number = cursor.getString(1);    //1은 번호를 받아옵니다.
+//            adapter.addItem(name,number);
+//
+//            db.familyInsert(name, number);
+//
+//            cursor.close();
+//        }
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
 
     public static class ListViewItem {
         private String titleStr ;

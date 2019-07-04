@@ -150,8 +150,8 @@ public class DBHelper extends SQLiteOpenHelper {
     /*-------연락처 관련 --------*/
     public void familyInsert(String name, String phoneNum){ // 연락처 저장
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO family (date, name) values(" +
-                name + "," + phoneNum + ");"
+        db.execSQL("INSERT INTO family (name, phonenum) values('" +
+                name + "','" + phoneNum + "');"
         );
     }
 
